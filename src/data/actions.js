@@ -2,6 +2,8 @@ export const listActions = {
     ADD_SONG: 'ADD_SONG',
     SHOW_SONG_INPUT: 'SHOW_SONG_INPUT',
     SET_INPUT_VALUE: 'SET_INPUT_VALUE',
+    REMOVE_FROM_QUEUE: 'REMOVE_FROM_QUEUE',
+    INSERT_INTO_QUEUE: 'INSERT_INTO_QUEUE',
 }
 
 export function addSong(uri, uuid) {

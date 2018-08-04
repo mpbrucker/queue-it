@@ -1,16 +1,33 @@
-body {
+html, body {
     margin: 0;
+    height: 100%;
 }
 
-.queue {
-    width: 25em;
-    min-height: 100px;
-    background-color: #333333;
+.queue-container {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 20em;
+    background: #ffffff;
 }
+
 
 .song {
     width: 100%;
     height: 50px;
     color: #ffffff;
     background-color: #999999;
+    margin: 5px 0 5px 0;
+}
+
+
+.input-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333333;
+    opacity: 0.5;
 }

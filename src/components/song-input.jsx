@@ -1,5 +1,6 @@
 import React from 'react';
 import uuidv4 from 'uuidv4';
+import '../static/app.css';
 
 class SongInput extends React.Component {
     componentDidMount() {
@@ -25,9 +26,12 @@ class SongInput extends React.Component {
     }
 
     render() {
-        const inputBox = (
-            this.props.show ? <input type="text" onBlur = { () => this.props.showSongInput(false) } onChange={this.updateInput}/> : <div />
-        )
+        const inputBox = 
+            (this.props.show ? 
+            <div className="input-container">
+                <input type="text" onBlur = { () => this.props.showSongInput(false) } onChange={this.updateInput}/>
+            </div> : <div />);
+        
         return inputBox;
     }
 }

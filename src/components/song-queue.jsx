@@ -1,4 +1,6 @@
 import React from 'react';
+import Draggable from 'react-draggable';
+import QueueItemContainer from '../containers/queue-item-container'
 import '../static/app.css';
 
 class SongQueue extends React.Component {
@@ -6,9 +8,7 @@ class SongQueue extends React.Component {
         let allSongs = []
         let allKeys = Object.keys(this.props.songs);
         allKeys.forEach((key) => allSongs.push(
-            <div key={this.props.songs[key].uuid} className="song">
-                {this.props.songs[key].uri}
-            </div>
+            <QueueItemContainer uri={this.props.songs[key].uri} uuid={this.props.songs[key].uuid} />
         ));
     return (
         <div className="queue">

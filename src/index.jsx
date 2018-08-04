@@ -30,9 +30,11 @@ class App extends React.Component {
     render() {
         return (
         <Provider store={this.store}>
-            <div>Song List
-                <button onClick={this.addSong} >Add Song</button>
-                <SongQueueContainer />
+            <div>
+                <div className="queue-container" >Song List
+                    <button onClick={this.addSong} >Add Song</button>
+                    <SongQueueContainer />
+                </div>
                 <SongInputContainer />
             </div>
         </Provider>
