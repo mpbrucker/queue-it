@@ -1,7 +1,10 @@
+const path = require('path');
+
+const APP_DIR = path.resolve(__dirname, 'src')
+
 module.exports = {
-  entry: [
-    './src/index.jsx'
-  ],
+  devtool: 'source-map',
+  entry: `${APP_DIR}/index.jsx`,
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
@@ -15,12 +18,12 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: 'babel-loader',
       }
     ]
-    },
-    resolve: {
-      extensions: ['*', '.js', '.jsx']
-  }
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  },
 
 };
