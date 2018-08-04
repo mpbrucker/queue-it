@@ -5,6 +5,7 @@ import { createStore } from 'redux';
 import listReducer from './data/reducers';
 
 import SongQueueContainer from './containers/song-queue-container';
+import SongInputContainer from './containers/song-input-container';
 
 /**
  * The main React container for the app. It holds the state and passes it down
@@ -16,12 +17,13 @@ class App extends React.Component {
         this.state={ songs: [] };
         this.store = createStore(
             listReducer,
-            { songs: [] }
+            { songs: [], showInput: false, }
         );
     };
 
     addSong = () => {
-        this.store.dispatch({type: 'ADD_SONG', uri: "asdf1234" });
+        this.store.dispatch({ type: 'SHOW_SONG_INPUT', val: true })
+        // this.store.dispatch({type: 'ADD_SONG', uri: "asdf1234" });
     };
 
 
@@ -31,6 +33,7 @@ class App extends React.Component {
             <div>Song List
                 <button onClick={this.addSong} >Add Song</button>
                 <SongQueueContainer />
+                <SongInputContainer />
             </div>
         </Provider>
         );
