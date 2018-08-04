@@ -27,11 +27,13 @@
     "start": "webpack-dev-server --inline --hot --mode development"
   },
   "dependencies": {
+    "css-loader": "^1.0.0",
     "dotenv": "^5.0.1",
     "mongodb": "^3.0.6",
     "path": "^0.12.7",
     "react-dom": "^16.3.0",
     "react-router-dom": "^4.2.2",
+    "style-loader": "^0.21.0",
     "uuidv4": "^1.0.1"
   }
 }
