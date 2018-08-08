@@ -17,3 +17,11 @@ export function showSongInput(val) {
 export function setInputValue(val) {
     return { type: listActions.SET_INPUT_VALUE, val };
 }
+
+export function removeFromQueue(uuid) {
+    return { type: listActions.REMOVE_FROM_QUEUE, uuid };
+}
+
+export function insertIntoQueue(uuid, pos) {
+    return { type: listActions.INSERT_INTO_QUEUE, uuid, pos };
+}

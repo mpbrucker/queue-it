@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { removeFromQueue, insertIntoQueue } from '../data/actions'
 import QueueItem from '../components/queue-item';
 
-const mapStateToProps = (state) => ({
-
+const mapStateToProps = (state, ownProps) => ({
+    uuid: ownProps.uuid,
 });
 
 const mapDispatchToProps = (dispatch) => ({

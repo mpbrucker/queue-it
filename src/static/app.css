@@ -11,6 +11,16 @@ html, body {
     background: #ffffff;
 }
 
+.queue-outer {
+    position: relative;
+}
+
+.queue {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
 
 .song {
     width: 100%;
@@ -30,4 +40,9 @@ html, body {
     justify-content: center;
     background-color: #333333;
     opacity: 0.5;
+}
+
+.dragged-item {
+    position: relative;
+    z-index: 10;
 }
