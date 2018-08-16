@@ -11,22 +11,12 @@ class SongQueue extends React.Component {
             // Get the song based on its position in the song list
             const song = this.props.songs[key];
             console.log(key)
-            if (song.inList) {
-                allSongs.push(<QueueItemContainer key={key} uuid={key} {...song} />);
-            } else {
-                allSongs.push(<div id="ghost-item" key={key} style={{ height: '0px' }} />);
-                draggedItem= <QueueItemContainer key={key} uuid={key} {...song} test={"test"} />;
-            }
+            allSongs.push(<QueueItemContainer key={key} uuid={key} {...song} />);
             
         });
     return (
-        <div className="queue-outer">
-            <div className="dragged-item">
-                {draggedItem}
-            </div>
-            <div className="queue">
-                {allSongs}
-            </div>
+        <div className="queue">
+            {allSongs}
         </div>);
     }
 }

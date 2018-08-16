@@ -11,14 +11,7 @@ html, body {
     background: #ffffff;
 }
 
-.queue-outer {
-    position: relative;
-}
-
 .queue {
-    position: absolute;
-    top: 0px;
-    left: 0px;
 }
 
 
@@ -42,7 +35,3 @@ html, body {
     opacity: 0.5;
 }
 
-.dragged-item {
-    position: relative;
-    z-index: 10;
-}
