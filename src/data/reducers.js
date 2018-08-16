@@ -36,16 +36,19 @@ export default function listReducer(state = {}, action) {
             )
         case listActions.INSERT_INTO_QUEUE:
             const origPos = curSongs[action.uuid].queuePos;
-            if (curSongList.length > 1) {
+            if (curSongList.length > 1 && action.pos < curSongList.length) {
                 curSongList.splice(origPos, 1);
-            if (action.pos === curSongList.length) {
-                // curSongList.push(action.uuid);
-            } else {
-                curSongList.splice(action.pos, 0, action.uuid);
-            }
+                // if (action.pos === curSongList.length) {
+                //     console.log(curSongList)
+                //     curSongList.push(action.uuid);
+                //     console.log(curSongList)
+                // } else {
+                    console.log(action.pos)
+                    curSongList.splice(action.pos, 0, action.uuid);
+                // }
+                curSongs[action.uuid].queuePos = action.pos;
             }
             
-            curSongs[action.uuid].queuePos = action.pos;
             console.log(curSongList);
             return Object.assign(
                 {},

@@ -10,8 +10,8 @@ class QueueItem extends React.Component {
     updateBoxPos = (e) => {
         // console.log(this.props.inList);
         const newPos = Math.floor(e.y/50);
-        console.log(newPos);
-        console.log(this.props.queuePos);
+        // console.log(newPos);
+        // console.log(this.props.queuePos);
         if (newPos !== this.props.queuePos) {
             this.props.insertIntoQueue(this.props.uuid, newPos);
         }
@@ -28,7 +28,7 @@ class QueueItem extends React.Component {
      * Adds item back into queue once dragging stops.
      */
     addToQueue = (e) => {
-        this.props.insertIntoQueue(this.props.uuid, 3);
+        // this.props.insertIntoQueue(this.props.uuid, 3);
     }
 
     render() {
