@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { removeFromQueue, insertIntoQueue } from '../data/actions'
+import { setInQueueState, insertIntoQueue } from '../data/actions'
 import QueueItem from '../components/queue-item';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -7,11 +7,11 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    removeFromQueue: (uuid) => {
-        dispatch(removeFromQueue(uuid));
+    setInQueueState: (uuid, val) => {
+        dispatch(setInQueueState(uuid, val));
     },
-    insertIntoQueue: (uuid, component) => {
-        dispatch(insertIntoQueue(uuid, component));
+    insertIntoQueue: (uuid, pos) => {
+        dispatch(insertIntoQueue(uuid, pos));
     }
 
 });

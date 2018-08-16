@@ -2,7 +2,7 @@ export const listActions = {
     ADD_SONG: 'ADD_SONG',
     SHOW_SONG_INPUT: 'SHOW_SONG_INPUT',
     SET_INPUT_VALUE: 'SET_INPUT_VALUE',
-    REMOVE_FROM_QUEUE: 'REMOVE_FROM_QUEUE',
+    SET_IN_QUEUE_STATE: 'SET_IN_QUEUE_STATE',
     INSERT_INTO_QUEUE: 'INSERT_INTO_QUEUE',
 }
 
@@ -18,8 +18,8 @@ export function setInputValue(val) {
     return { type: listActions.SET_INPUT_VALUE, val };
 }
 
-export function removeFromQueue(uuid) {
-    return { type: listActions.REMOVE_FROM_QUEUE, uuid };
+export function setInQueueState(uuid, val) {
+    return { type: listActions.setInQueueState, uuid, val };
 }
 
 export function insertIntoQueue(uuid, pos) {

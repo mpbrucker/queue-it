@@ -7,12 +7,12 @@ export default function listReducer(state = {}, action) {
     switch (action.type) {
         case listActions.ADD_SONG:
             curSongList.push(action.uuid)
-            curSongs[action.uuid] = { uri: action.uri, inList: true };
+            curSongs[action.uuid] = { uri: action.uri, inList: true, queuePos: curSongList.length - 1 };
 
             return Object.assign(
                 {},
                 state,
-                { songs: curSongs, songList: curSongList }
+                { songs: curSongs, songList: curSongList}
             )
         case listActions.SHOW_SONG_INPUT:
             return Object.assign(
@@ -26,14 +26,31 @@ export default function listReducer(state = {}, action) {
                 state,
                 { inputVal: action.val }
             )
-        case listActions.REMOVE_FROM_QUEUE:
-            console.log(curSongs[action.uuid])
-            curSongs[action.uuid].inList = false;
+        case listActions.SET_IN_QUEUE_STATE:
+            curSongs[action.uuid].inList = action.val;
 
             return Object.assign(
                 {},
                 state,
                 { songs: curSongs }
+            )
+        case listActions.INSERT_INTO_QUEUE:
+            const origPos = curSongs[action.uuid].queuePos;
+            if (curSongList.length > 1) {
+                curSongList.splice(origPos, 1);
+            if (action.pos === curSongList.length) {
+                // curSongList.push(action.uuid);
+            } else {
+                curSongList.splice(action.pos, 0, action.uuid);
+            }
+            }
+            
+            curSongs[action.uuid].queuePos = action.pos;
+            console.log(curSongList);
+            return Object.assign(
+                {},
+                state,
+                { songs: curSongs, songList: curSongList }
             )
         default:
             return state
