@@ -4,6 +4,7 @@ import QueueItem from '../components/queue-item';
 
 const mapStateToProps = (state, ownProps) => ({
     uuid: ownProps.uuid,
+    songList: state.songList,
 });
 
 const mapDispatchToProps = (dispatch) => ({

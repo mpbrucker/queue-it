@@ -8,34 +8,22 @@ class QueueItem extends React.Component {
     }
 
     updateBoxPos = (e) => {
-        // console.log(this.props.inList);
         const newPos = Math.floor(e.y/50);
-        // console.log(newPos);
-        // console.log(this.props.queuePos);
-        if (newPos !== this.props.queuePos) {
-            this.props.insertIntoQueue(this.props.uuid, newPos);
-        }
-    }
-
-    /**
-     * Temporarily removes the queue item from the queue upon drag start.
-     */
-    removeItem = (e) => {
-        this.props.setInQueueState(this.props.uuid, false);
-    }
-
-    /**
-     * Adds item back into queue once dragging stops.
-     */
-    addToQueue = (e) => {
-        // this.props.insertIntoQueue(this.props.uuid, 3);
+        this.props.insertIntoQueue(this.props.uuid, newPos);
     }
 
     render() {
+        console.log(this.props.inList)
+        const renderPos = this.props.inList ? 0 : -(this.props.queuePos * 50);
         return (
             <div className="song-wrapper" >
                 <div className="song unselectable" />
-                <Draggable position={{ x: 0, y: 0 }} key={this.props.uuid} onStart={this.setInQueueState} onDrag={this.updateBoxPos} onStop={this.addToQueue}>
+                <Draggable 
+                    position={{ x: 0, y: renderPos }} 
+                    key={this.props.uuid} 
+                    onStart={() => {this.props.setInQueueState(this.props.uuid, false);}} 
+                    onDrag={this.updateBoxPos} 
+                    onStop={() => {this.props.setInQueueState(this.props.uuid, true);}}>
                     <div className="song">
                         {this.props.uri}
                     </div>
@@ -48,9 +36,9 @@ class QueueItem extends React.Component {
 QueueItem.propTypes = {
     setInQueueState: PropTypes.func.isRequired,
     insertIntoQueue: PropTypes.func.isRequired,
+    inList: PropTypes.boolean.isRequired,
     uri: PropTypes.string.isRequired,
-    uuid: PropTypes.string.isRequired,
-    queuePos: PropTypes.number.isRequired,
+    uuid: PropTypes.string.isRequired
 }
 
 

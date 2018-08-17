@@ -10,7 +10,6 @@ class SongQueue extends React.Component {
         this.props.songList.forEach((key) => {
             // Get the song based on its position in the song list
             const song = this.props.songs[key];
-            console.log(key)
             allSongs.push(<QueueItemContainer key={key} uuid={key} {...song} />);
             
         });

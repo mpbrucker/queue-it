@@ -19,7 +19,7 @@ export function setInputValue(val) {
 }
 
 export function setInQueueState(uuid, val) {
-    return { type: listActions.setInQueueState, uuid, val };
+    return { type: listActions.SET_IN_QUEUE_STATE, uuid, val };
 }
 
 export function insertIntoQueue(uuid, pos) {
