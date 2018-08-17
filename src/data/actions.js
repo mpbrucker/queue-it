@@ -4,6 +4,8 @@ export const listActions = {
     SET_INPUT_VALUE: 'SET_INPUT_VALUE',
     SET_IN_QUEUE_STATE: 'SET_IN_QUEUE_STATE',
     INSERT_INTO_QUEUE: 'INSERT_INTO_QUEUE',
+    SET_MOUSE_DOWN: 'SET_MOUSE_DOWN',
+    SET_ITEM_POS: 'SET_ITEM_POS',
 }
 
 export function addSong(uri, uuid) {
@@ -24,4 +26,12 @@ export function setInQueueState(uuid, val) {
 
 export function insertIntoQueue(uuid, pos) {
     return { type: listActions.INSERT_INTO_QUEUE, uuid, pos };
+}
+
+export function setMouseDown(x, y) {
+    return { type: listActions.SET_MOUSE_DOWN, x, y};
+}
+
+export function setItemPos(uuid, x, y) {
+    return { type: listActions.SET_ITEM_POS, uuid, x, y};
 }
