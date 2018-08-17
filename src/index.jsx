@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import listReducer from './data/reducers';
+import mainReducer from './reducers/main-reducer';
 
 import SongQueueContainer from './containers/song-queue-container';
 import SongInputContainer from './containers/song-input-container';
@@ -16,7 +16,7 @@ class App extends React.Component {
         super(props);
         this.state={ songs: [] };
         this.store = createStore(
-            listReducer,
+            mainReducer,
             { songs: {}, songList: [], showInput: false, }
         );
     };
