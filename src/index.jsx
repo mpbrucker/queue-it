@@ -17,7 +17,7 @@ class App extends React.Component {
         this.state={ songs: [] };
         this.store = createStore(
             mainReducer,
-            { songs: {}, songList: [], showInput: false, }
+            { queueReducer: {songs: {}, songList: [], showInput: false} }
         );
     };
 

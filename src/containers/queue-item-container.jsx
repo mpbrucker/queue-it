@@ -7,9 +7,9 @@ const mapStateToProps = (state, ownProps) => ({
     x: ownProps.x,
     y: ownProps.y,
 
-    songList: state.songList,
-    mouseX: state.mouseX,
-    mouseY: state.mouseY,
+    songList: state.queueReducer.songList,
+    mouseX: state.queueReducer.mouseX,
+    mouseY: state.queueReducer.mouseY,
 });
 
 const mapDispatchToProps = (dispatch) => ({

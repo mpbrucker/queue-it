@@ -3,8 +3,8 @@ import { addSong, showSongInput, setInputValue } from '../data/actions'
 import SongInput from '../components/song-input';
 
 const mapStateToProps = (state, ownProps) => ({
-    show: state.songInput,
-    inputVal: state.inputVal,
+    show: state.queueReducer.songInput,
+    inputVal: state.queueReducer.inputVal,
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

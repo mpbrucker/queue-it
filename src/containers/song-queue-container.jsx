@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import SongQueue from '../components/song-queue';
 
 const mapStateToProps = (state, ownProps) => ({
-    songs: state.songs,
-    songList: state.songList
+    songs: state.queueReducer.songs,
+    songList: state.queueReducer.songList
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({});

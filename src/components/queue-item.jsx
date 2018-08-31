@@ -10,17 +10,20 @@ class QueueItem extends React.Component {
     updateBoxPos = (e) => {
         const newPos = Math.floor(e.y/50);
         this.props.insertIntoQueue(this.props.uuid, newPos);
-        this.props.setItemPos(this.props.uuid, e.offsetX, e.offsetY);
-        console.log(this.props.mouseX);
+        this.props.setItemPos(this.props.uuid, e.pageX, e.pageY);
+        // console.log(this.props.mouseX);
         // console.log(e);
+        console.log(this.props.x);
+        console.log(this.props.y);
     }
     
     /**
      * Called when an item is grabbed
      */
     dragStartHandler = (e) => {
-        this.props.setMouseDown(e.offsetX, e.offsetY);
-        console.log(e)
+        this.props.setMouseDown(e.pageX, e.pageY);
+        console.log(e.pageX)
+        // console.log(e)
     }
 
     /**
@@ -34,7 +37,9 @@ class QueueItem extends React.Component {
      * Returns the CSS styling the given item's position
      */
     getItemPosStyle = () => {
-        
+        return {
+            transform: "translate(`this.props.x`,`this.props.y`)"
+        };
     }
 
     render() {
@@ -43,7 +48,6 @@ class QueueItem extends React.Component {
             <div className="song-wrapper" >
                 {/* <div className="song unselectable" /> */}
                 <DraggableCore
-                    position={{ x: 0, y: 0 }} 
                     key={this.props.uuid} 
                     onStart={this.dragStartHandler} 
                     onDrag={this.updateBoxPos} 
