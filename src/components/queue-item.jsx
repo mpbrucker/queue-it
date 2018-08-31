@@ -7,22 +7,24 @@ class QueueItem extends React.Component {
         this.state = {}
     }
 
-    getNewQueuePos = (yVal) => {
+    getNewQueuePos = (yVal, curPos) => {
         const newPos = Math.floor((yVal-this.props.mouseY)/60)
-        console.log(yVal)
-        if (newPos >= 0 && newPos !== this.props.pos && this.props.songList.length > 1 && newPos < this.props.songList.length) {
-            
+        // console.log(yVal)
+        if (newPos >= 0 && newPos !== curPos && this.props.songList.length > 1 && newPos < this.props.songList.length) {
             return newPos;
         } else {
-            return this.props.pos;
+            return curPos;
         }
 
     }
 
     updateBoxPos = (e) => {
-        const queuePos = this.getNewQueuePos(e.y)
+        const curPos = this.props.songList.indexOf(this.props.uuid)
+        console.log(curPos)
+        const queuePos = this.getNewQueuePos(e.pageY, curPos)
+        console.log(queuePos)
         this.props.insertIntoQueue(this.props.uuid, queuePos);
-        this.props.setItemPos(this.props.uuid, e.pageX-this.props.mouseX, e.pageY-this.props.mouseY-(this.props.pos*60));
+        this.props.setItemPos(this.props.uuid, e.pageX-this.props.mouseX, e.pageY-this.props.mouseY-(queuePos*60));
         // console.log(this.props.mouseX);
         // console.log(e);
         // console.log(this.props.x);
@@ -49,9 +51,7 @@ class QueueItem extends React.Component {
         let itemStyle = {
             transform: `translate(${this.props.x}px,${this.props.y}px)`
         };
-        // console.log(itemStyle)
 
-        const renderPos = this.props.inList ? 0 : -(this.props.queuePos * 50);
         return (
             <div className="song-wrapper" >
                 <div className="song unselectable" />
