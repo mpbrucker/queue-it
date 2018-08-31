@@ -21,7 +21,6 @@ class SongInput extends React.Component {
     }
 
     sendInput = (e) => {
-        console.log(this.props.inputVal)
         if (e.key === 'Enter') {
             this.props.showSongInput(false);
             this.props.addSong(this.props.inputVal, uuidv4());
@@ -41,7 +40,6 @@ class SongInput extends React.Component {
 
     handleChange = (e) => {
         const match = uriRegex.exec(e.target.value);
-        console.log(match);
         if (match !== null) {
             const requestUri = 'http://localhost:9091/song/' + e.target.value;
             fetch(requestUri).then(results => {

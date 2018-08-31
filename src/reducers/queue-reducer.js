@@ -6,7 +6,7 @@ export default function queueReducer(state = {}, action) {
     switch (action.type) {
         case queueActions.ADD_SONG:
             curSongList.push(action.uuid)
-            curSongs[action.uuid] = { uri: action.uri, inList: true, x: 0, y: 0};
+            curSongs[action.uuid] = { uri: action.uri, inList: true, x: 0, y: 0, pos: curSongList.length-1};
 
             return Object.assign(
                 {},
@@ -40,15 +40,14 @@ export default function queueReducer(state = {}, action) {
                 { songs: curSongs }
             )
         case queueActions.INSERT_INTO_QUEUE:
-            const origPos = curSongList.indexOf(action.uuid);
-            if (origPos !== action.pos && curSongList.length > 1 && action.pos < curSongList.length) {
-                curSongList.splice(origPos, 1);                
-                curSongList.splice(action.pos, 0, action.uuid);
-            }            
+            const origPos = curSongs[action.uuid].pos;
+            curSongList.splice(origPos, 1);                
+            curSongList.splice(action.pos, 0, action.uuid);
+            curSongs[action.uuid].pos = action.pos;
             return Object.assign(
                 {},
                 state,
-                { songList: curSongList }
+                { songList: curSongList, songs: curSongs }
             )
         case queueActions.SET_ITEM_POS:
             curSongs[action.uuid].x = action.x;

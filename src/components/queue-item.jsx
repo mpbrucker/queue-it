@@ -7,14 +7,26 @@ class QueueItem extends React.Component {
         this.state = {}
     }
 
+    getNewQueuePos = (yVal) => {
+        const newPos = Math.floor((yVal-this.props.mouseY)/60)
+        console.log(yVal)
+        if (newPos >= 0 && newPos !== this.props.pos && this.props.songList.length > 1 && newPos < this.props.songList.length) {
+            
+            return newPos;
+        } else {
+            return this.props.pos;
+        }
+
+    }
+
     updateBoxPos = (e) => {
-        const newPos = Math.floor(e.y/50);
-        this.props.insertIntoQueue(this.props.uuid, newPos);
-        this.props.setItemPos(this.props.uuid, e.pageX, e.pageY);
+        const queuePos = this.getNewQueuePos(e.y)
+        this.props.insertIntoQueue(this.props.uuid, queuePos);
+        this.props.setItemPos(this.props.uuid, e.pageX-this.props.mouseX, e.pageY-this.props.mouseY-(this.props.pos*60));
         // console.log(this.props.mouseX);
         // console.log(e);
-        console.log(this.props.x);
-        console.log(this.props.y);
+        // console.log(this.props.x);
+        // console.log(this.props.y);
     }
     
     /**
@@ -22,7 +34,7 @@ class QueueItem extends React.Component {
      */
     dragStartHandler = (e) => {
         this.props.setMouseDown(e.pageX, e.pageY);
-        console.log(e.pageX)
+        // console.log(e.pageX)
         // console.log(e)
     }
 
@@ -30,29 +42,25 @@ class QueueItem extends React.Component {
      * Called when an item is let go of
      */
     dragStopHandler = (e) => {
-
-    }
-
-    /**
-     * Returns the CSS styling the given item's position
-     */
-    getItemPosStyle = () => {
-        return {
-            transform: "translate(`this.props.x`,`this.props.y`)"
-        };
+        this.props.setItemPos(this.props.uuid, 0, 0);
     }
 
     render() {
+        let itemStyle = {
+            transform: `translate(${this.props.x}px,${this.props.y}px)`
+        };
+        // console.log(itemStyle)
+
         const renderPos = this.props.inList ? 0 : -(this.props.queuePos * 50);
         return (
             <div className="song-wrapper" >
-                {/* <div className="song unselectable" /> */}
+                <div className="song unselectable" />
                 <DraggableCore
                     key={this.props.uuid} 
                     onStart={this.dragStartHandler} 
                     onDrag={this.updateBoxPos} 
                     onStop={this.dragStopHandler}>
-                    <div className="song">
+                    <div className="song" style={itemStyle}>
                         {this.props.uri}
                     </div>
                 </DraggableCore>
